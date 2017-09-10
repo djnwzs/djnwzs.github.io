@@ -7065,5 +7065,6 @@ img#wpstats {
         border-top: none
 
     }
+    .gobtn{padding: 5px 18px;color: #ccc;margin: 0 10px;border: 1px solid #ccc;border-radius: 4px;font-size: 14px;}
 
 }

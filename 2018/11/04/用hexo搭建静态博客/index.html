@@ -91,7 +91,7 @@
 </code></pre><p>在windows中,也可使用 Git Bash 通过以上指令安装 Node.js。</p>
 <h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>打开 Git Bash，执行如下命令安装 Hexo</p>
 <pre><code>$ npm install -g hexo-cli
-</code></pre><h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+</code></pre><h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><h4 id="1-初始化"><a href="#1-初始化" class="headerlink" title="1. 初始化"></a>1. 初始化</h4><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
 <pre><code>$ hexo init &lt;folder&gt;
 $ cd &lt;folder&gt;
 $ npm install
@@ -106,7 +106,7 @@ $ npm install
 |   └── _posts
 └── themes
 </code></pre><p><strong>_config.yml</strong> 网站 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">配置</a> 文件，可以在此配置大部分的参数。<br><strong>package.json</strong> 应用程序的信息。EJS, Stylus 和 Markdown renderer 已默认安装，您可以自由移除。<br><strong>scaffolds</strong> <a href="https://hexo.io/zh-cn/docs/writing" target="_blank" rel="noopener">模版</a> 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。<br>Hexo的模板是指在新建的markdown文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。<br><strong>source</strong> 资源文件夹是存放用户资源的地方。除 <code>_posts</code> 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。<br><strong>themes</strong> <a href="https://hexo.io/zh-cn/docs/themes" target="_blank" rel="noopener">主题</a> 文件夹。Hexo 会根据主题来生成静态页面。  </p>
-<h4 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h4><pre><code>$ hexo generate
+<h4 id="2-生成静态文件"><a href="#2-生成静态文件" class="headerlink" title="2. 生成静态文件"></a>2. 生成静态文件</h4><pre><code>$ hexo generate
 </code></pre><p>该命令可以简写为  </p>
 <pre><code>$ hexo g
 </code></pre><table>
@@ -127,8 +127,8 @@ $ npm install
 </tr>
 </tbody>
 </table>
-<h4 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h4><pre><code>$ hexo server
-</code></pre><p>默认情况下，访问网址为： <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a></p>
+<h4 id="3-启动服务器"><a href="#3-启动服务器" class="headerlink" title="3. 启动服务器"></a>3. 启动服务器</h4><pre><code>$ hexo server
+</code></pre><p>默认情况下，访问网址为： <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <table>
 <thead>
 <tr>
@@ -151,7 +151,7 @@ $ npm install
 </tr>
 </tbody>
 </table>
-<h4 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h4><pre><code>$ hexo deploy
+<h4 id="4-部署网站"><a href="#4-部署网站" class="headerlink" title="4. 部署网站"></a>4. 部署网站</h4><pre><code>$ hexo deploy
 </code></pre><p>该命令可以简写为：</p>
 <pre><code>$ hexo d
 </code></pre><table>

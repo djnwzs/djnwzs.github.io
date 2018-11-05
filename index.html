@@ -66,7 +66,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-11-03T22:35:39.862Z"><a href="/2018/11/04/用hexo搭建静态博客/">2018-11-04</a></time>
+        <time datetime="2018-11-03T22:35:39.000Z"><a href="/2018/11/04/用hexo搭建静态博客/">2018-11-04</a></time>
       
       
   
@@ -112,12 +112,12 @@ $ npm install
 <li><code>package.json</code> 应用程序的信息。EJS, Stylus 和 Markdown renderer 已默认安装，您可以自由移除。  </li>
 <li><code>scaffolds</code> <a href="https://hexo.io/zh-cn/docs/writing" target="_blank" rel="noopener">模版</a> 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。<br>Hexo的模板是指在新建的markdown文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。  </li>
 <li><code>source</code> 资源文件夹是存放用户资源的地方。除 <code>_posts</code> 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。  </li>
+<li><code>_posts</code> 存放文章的文件夹，除了用命令之外，也可以直接在这里新建文章。</li>
 <li><code>themes</code> <a href="https://hexo.io/zh-cn/docs/themes" target="_blank" rel="noopener">主题</a> 文件夹。Hexo 会根据主题来生成静态页面。  </li>
 </ul>
 <h4 id="2-生成静态文件"><a href="#2-生成静态文件" class="headerlink" title="2. 生成静态文件"></a>2. 生成静态文件</h4><pre><code>$ hexo generate
-</code></pre><p>该命令可以简写为  </p>
-<pre><code>$ hexo g
-</code></pre><table>
+</code></pre><p>其中 <code>generate</code> 可以简写为 <code>g</code>  </p>
+<table>
 <thead>
 <tr>
 <th>选项</th>
@@ -136,7 +136,7 @@ $ npm install
 </tbody>
 </table>
 <h4 id="3-启动服务器"><a href="#3-启动服务器" class="headerlink" title="3. 启动服务器"></a>3. 启动服务器</h4><pre><code>$ hexo server
-</code></pre><p>默认情况下，访问网址为： <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
+</code></pre><p>其中 <code>server</code> 可以简写为 <code>s</code><br>默认情况下，访问网址为： <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <table>
 <thead>
 <tr>
@@ -160,9 +160,8 @@ $ npm install
 </tbody>
 </table>
 <h4 id="4-部署网站"><a href="#4-部署网站" class="headerlink" title="4. 部署网站"></a>4. 部署网站</h4><pre><code>$ hexo deploy
-</code></pre><p>该命令可以简写为：</p>
-<pre><code>$ hexo d
-</code></pre><table>
+</code></pre><p>其中 <code>deploy</code> 可以简写为 <code>d</code></p>
+<table>
 <thead>
 <tr>
 <th>参数</th>
@@ -203,7 +202,7 @@ $ npm install
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-10-21T03:03:01.405Z"><a href="/2018/10/21/自定义部署office365/">2018-10-21</a></time>
+        <time datetime="2018-10-21T03:03:01.000Z"><a href="/2018/10/21/自定义部署office365/">2018-10-21</a></time>
       
       
   
@@ -219,7 +218,7 @@ $ npm install
 <h3 id="2、编辑”configuration-xml”配置文件"><a href="#2、编辑”configuration-xml”配置文件" class="headerlink" title="2、编辑”configuration.xml”配置文件"></a>2、编辑”configuration.xml”配置文件</h3><blockquote>
 <p>详情参考：<a href="https://docs.microsoft.com/zh-cn/DeployOffice/overview-of-the-office-2016-deployment-tool" target="_blank" rel="noopener">微软官方office部署工具概述</a></p>
 </blockquote>
-<p>以下为只安装office三大件(Word Excel PPt)的配置<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Add</span> <span class="attr">SourcePath</span>=<span class="string">"E:\office安装\"</span> <span class="attr">OfficeClientEdition</span>=<span class="string">"64"</span> &gt;</span><span class="comment">&lt;!-- 安装文件下载位置及office位数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Product</span> <span class="attr">ID</span>=<span class="string">"O365ProPlusRetail"</span>&gt;</span><span class="comment">&lt;!-- 选择office版本 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Language</span> <span class="attr">ID</span>=<span class="string">"en-us"</span>/&gt;</span>          <span class="comment">&lt;!-- 选择office语言 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Language</span> <span class="attr">ID</span>=<span class="string">"zh-cn"</span>/&gt;</span>          <span class="comment">&lt;!-- 选择office语言，只选中文可能无法安装 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Access"</span>/&gt;</span>       <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Groove"</span>/&gt;</span>       <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Lync"</span>/&gt;</span>         <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"OneDrive"</span>/&gt;</span>     <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"OneNote"</span>/&gt;</span>      <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Outlook"</span>/&gt;</span>      <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Publisher"</span>/&gt;</span>    <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Product</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Add</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>以下为只安装office三大件(Word Excel PPt)的配置<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Add</span> <span class="attr">SourcePath</span>=<span class="string">"E:\office安装\"</span> <span class="attr">OfficeClientEdition</span>=<span class="string">"64"</span> &gt;</span><span class="comment">&lt;!-- 安装文件下载位置及office位数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Product</span> <span class="attr">ID</span>=<span class="string">"O365ProPlusRetail"</span>&gt;</span><span class="comment">&lt;!-- 选择office版本 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Language</span> <span class="attr">ID</span>=<span class="string">"en-us"</span>/&gt;</span>          <span class="comment">&lt;!-- 选择office语言 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Language</span> <span class="attr">ID</span>=<span class="string">"zh-cn"</span>/&gt;</span>          <span class="comment">&lt;!-- 选择office语言，只选中文可能无法安装 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Access"</span>/&gt;</span>       <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Groove"</span>/&gt;</span>       <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Lync"</span>/&gt;</span>         <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"OneDrive"</span>/&gt;</span>     <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"OneNote"</span>/&gt;</span>      <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Outlook"</span>/&gt;</span>      <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Publisher"</span>/&gt;</span>    <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Product</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Add</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="3、下载-Office-365-的安装文件"><a href="#3、下载-Office-365-的安装文件" class="headerlink" title="3、下载 Office 365 的安装文件"></a>3、下载 Office 365 的安装文件</h3><p>在配置文件所在目录打开cmd，运行<code>setup.exe /download configuration.xml</code>，之后安装文件便会下载至所选目录（如上示例为E:\office安装\）。</p>
 <h3 id="4、安装-Office-365"><a href="#4、安装-Office-365" class="headerlink" title="4、安装 Office 365"></a>4、安装 Office 365</h3><p>在配置文件所在目录打开cmd，运行<code>setup.exe /configure configuration.xml</code>，之后安装程序便会使用安装文件安装office。</p>
 <blockquote>

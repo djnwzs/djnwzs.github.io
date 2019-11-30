@@ -1,15 +1,148 @@
-extends partial/layout
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Author Name,name@example.com"><title> · 星稀</title><meta name="description" content="逼真的雪花飘落特效
 
-block site_title
-    != page.title + " · " + config.title
+body { background-color: #000044; background: url(bg.jpg) no-repeat; margin: 0px; overflow: hidden; background-size: cover; }
+a { color: #0"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">星稀</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/about">Sobre</a></li><li><a href="/archives">Arquivo</a></li><li><a href="/links">Links</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a></a></h3></div><div class="post-content"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>逼真的雪花飘落特效</title>
+<style type="text/css">
+body { background-color: #000044; background: url(bg.jpg) no-repeat; margin: 0px; overflow: hidden; background-size: cover; }
+a { color: #0078ff; }
+</style>
+</head>
+<body onload="init()">
+<script type="text/javascript" src="ThreeCanvas.js"></script> 
+<script type="text/javascript" src="Snow.js"></script> 
+<script type="text/javascript">
+var SCREEN_WIDTH = window.innerWidth;
+var SCREEN_HEIGHT = window.innerHeight;
 
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
+var container;
 
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    if page.comments
-        include partial/comments
+var particle;
+
+var camera;
+var scene;
+var renderer;
+
+var mouseX = 0;
+var mouseY = 0;
+
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+
+var particles = []; 
+var particleImage = new Image();
+particleImage.src = 'ParticleSmoke.png'; 
+
+
+
+function init() {
+
+	container = document.createElement('div');
+	document.body.appendChild(container);
+
+	camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000 );
+	camera.position.z = 500;
+
+	scene = new THREE.Scene();
+	scene.add(camera);
+		
+	renderer = new THREE.CanvasRenderer();
+	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	var material = new THREE.ParticleBasicMaterial( { map: new THREE.Texture(particleImage) } );
+		
+	for (var i = 0; i < 500; i++) {
+
+		particle = new Particle3D( material);
+		particle.position.x = Math.random() * 2000 - 1000;
+		particle.position.y = Math.random() * 2000 - 1000;
+		particle.position.z = Math.random() * 2000 - 1000;
+		particle.scale.x = particle.scale.y =  1;
+		scene.add( particle );
+		
+		particles.push(particle); 
+	}
+
+	container.appendChild( renderer.domElement );
+
+
+	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+	document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+	
+	setInterval( loop, 1000 / 60 );
+	
+}
+
+function onDocumentMouseMove( event ) {
+
+	mouseX = event.clientX - windowHalfX;
+	mouseY = event.clientY - windowHalfY;
+}
+
+function onDocumentTouchStart( event ) {
+
+	if ( event.touches.length == 1 ) {
+
+		event.preventDefault();
+
+		mouseX = event.touches[ 0 ].pageX - windowHalfX;
+		mouseY = event.touches[ 0 ].pageY - windowHalfY;
+	}
+}
+
+function onDocumentTouchMove( event ) {
+
+	if ( event.touches.length == 1 ) {
+
+		event.preventDefault();
+
+		mouseX = event.touches[ 0 ].pageX - windowHalfX;
+		mouseY = event.touches[ 0 ].pageY - windowHalfY;
+	}
+}
+
+//
+
+function loop() {
+
+for(var i = 0; i<particles.length; i++)
+	{
+
+		var particle = particles[i]; 
+		particle.updatePhysics(); 
+
+		with(particle.position)
+		{
+			if(y<-1000) y+=2000; 
+			if(x>1000) x-=2000; 
+			else if(x<-1000) x+=2000; 
+			if(z>1000) z-=2000; 
+			else if(z<-1000) z+=2000; 
+		}				
+	}
+
+	camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+	camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+	camera.lookAt(scene.position); 
+
+	renderer.render( scene, camera );
+
+	
+}
+</script>
+</body>
+</html></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-12-13</span></div></div></div></div><a id="comments"></a><div class="div" id="lv-container" data-id="city" data-uid="MTAyMC80MDM5My8xNjkyMA=="></div><script> (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');
+</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

@@ -1,196 +1,34 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8" />
-  
-  <title>自定义部署Office365 | 星稀</title>
-  <meta name="author" content="djn" />
+extends partial/layout
 
-  
-  <meta name="description" content="唯有星稀衬月明" />
-  
+include mixins
 
-  
+block site_title
+    != page.title + " · " + config.title
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
 
-  <meta property="og:title" content="自定义部署Office365" />
-  <meta property="og:site_name" content="星稀" />
-
-  
-  
-
-  
-    <meta property="og:image" content="" />
-  
-
-  
-  <link href="/css/images/favicon.ico" rel="icon" />
-  
-
-  <link rel="alternate" href="/atom.xml" title="星稀" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
-
-
-  <!-- baidu webmaster push -->
-  <script src='//push.zhanzhang.baidu.com/push.js'></script>
-
-</head>
-
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">星稀</a></h1>
-  <h2><a href="/">唯有星稀衬月明</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="http://pan.djnwzs.cn">Netdisk</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2018-10-21T03:03:01.000Z"><a href="/2018/10/21/自定义部署office365/">2018-10-21</a></time>
-      
-      
-  
-    <h1 class="title">自定义部署Office365</h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="1、下载-Office-部署工具并解压至任意目录"><a href="#1、下载-Office-部署工具并解压至任意目录" class="headerlink" title="1、下载 Office 部署工具并解压至任意目录"></a>1、下载 Office 部署工具并解压至任意目录</h3><blockquote>
-<p>下载地址：<a href="https://www.microsoft.com/en-us/download/details.aspx?id=49117" target="_blank" rel="noopener">微软官方下载地址</a></p>
-</blockquote>
-<h3 id="2、编辑-“configuration-xml”-配置文件"><a href="#2、编辑-“configuration-xml”-配置文件" class="headerlink" title="2、编辑 “configuration.xml” 配置文件"></a>2、编辑 “configuration.xml” 配置文件</h3><blockquote>
-<p>详情参考：<a href="https://docs.microsoft.com/zh-cn/DeployOffice/overview-of-the-office-2016-deployment-tool" target="_blank" rel="noopener">微软官方office部署工具概述</a></p>
-</blockquote>
-<p>以下为只安装office三大件(Word Excel PPt)的配置<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Add</span> <span class="attr">SourcePath</span>=<span class="string">"E:\office安装\"</span> <span class="attr">OfficeClientEdition</span>=<span class="string">"64"</span> &gt;</span><span class="comment">&lt;!-- 安装文件下载位置及office位数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Product</span> <span class="attr">ID</span>=<span class="string">"O365ProPlusRetail"</span>&gt;</span><span class="comment">&lt;!-- 选择office版本 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Language</span> <span class="attr">ID</span>=<span class="string">"en-us"</span>/&gt;</span>          <span class="comment">&lt;!-- 选择office语言 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Language</span> <span class="attr">ID</span>=<span class="string">"zh-cn"</span>/&gt;</span>          <span class="comment">&lt;!-- 选择office语言，只选中文可能无法安装 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Access"</span>/&gt;</span>       <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Groove"</span>/&gt;</span>       <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Lync"</span>/&gt;</span>         <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"OneDrive"</span>/&gt;</span>     <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"OneNote"</span>/&gt;</span>      <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Outlook"</span>/&gt;</span>      <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ExcludeApp</span> <span class="attr">ID</span>=<span class="string">"Publisher"</span>/&gt;</span>    <span class="comment">&lt;!-- 不安装的应用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Product</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Add</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="3、下载-Office-365-的安装文件"><a href="#3、下载-Office-365-的安装文件" class="headerlink" title="3、下载 Office 365 的安装文件"></a>3、下载 Office 365 的安装文件</h3><p>在配置文件所在目录打开cmd，运行<code>setup.exe /download configuration.xml</code>，之后安装文件便会下载至所选目录（如上示例为E:\office安装\）。</p>
-<h3 id="4、安装-Office-365"><a href="#4、安装-Office-365" class="headerlink" title="4、安装 Office 365"></a>4、安装 Office 365</h3><p>在配置文件所在目录打开cmd，运行<code>setup.exe /configure configuration.xml</code>，之后安装程序便会使用安装文件安装office。</p>
-<blockquote>
-<p>附件：<a href="https://djn-my.sharepoint.com/:u:/g/personal/admin_djn_onmicrosoft_com/EbjEsEJfBP1Gj34KBCx9CD8B2ymCankJAoNDGAgcGNK5CQ?e=CJyyID" target="_blank" rel="noopener">已配置好三大件的部署文件 (附bat安装脚本)</a></p>
-</blockquote>
-
-      
-    </div>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-        
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-<section id="comment">
-  <h1 class="title">留言</h1>
-
-  
-  <div id="lv-container" data-id="city" data-uid = "MTAyMC80MDM5My8xNjkyMA==">
-    <script type="text/javascript">
-       (function(d, s) {
-           var j, e = d.getElementsByTagName(s)[0];
-    
-           if (typeof LivereTower === 'function') { return; }
-    
-           j = d.createElement(s);
-           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-           j.async = true;
-    
-           e.parentNode.insertBefore(j, e);
-       })(document, 'script');
-    </script>
-    <noscript>为正常使用评论功能请激活JavaScript</noscript>
-    </div>
-    
-</section>
-
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:yoursite.com">
-  </form>
-</div>
-
-  
-
-  
-<div class="widget tag">
-  <h3 class="title">最新文章</h3>
-  <ul class="entry">
-    
-      <li>
-        <a href="/2019/05/01/使用github部署静态网页/">使用github部署静态网页</a>
-      </li>
-    
-      <li>
-        <a href="/2018/11/04/用hexo搭建静态博客/">用hexo搭建静态博客</a>
-      </li>
-    
-      <li>
-        <a href="/2018/10/21/自定义部署office365/">自定义部署Office365</a>
-      </li>
-    
-  </ul>
-</div>
-
-
-  
-
-  
-</aside>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  <p>
-  
-  &copy; 2019 djn
-  
-  All rights reserved.</p>
-  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
-</div>
-<div class="clearfix"></div>
-
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
-
-<div id='bg'></div>
-</body>
-</html>
+block content
+  .autopagerize_page_element: .content: .post-page
+    include mixins
+    +make_post(page, true)
+    .share
+      .evernote
+        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
+      .weibo
+        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
+      .twitter
+        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
+    - var prev = page.prev ? page.prev.path : false;
+    - var next = page.next ? page.next.path : false;
+    .pagination
+      ul.clearfix
+        if prev
+          li.pre.pagbuttons
+            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
+        if next
+          li.next.pagbuttons
+            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
+    if page.comments
+        include partial/comments
